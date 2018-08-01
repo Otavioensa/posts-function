@@ -60,26 +60,8 @@ jobs:
       - run:
           name: Deploy to Stagging Environment
           command: |
-            aws s3 cp build.zip s3://posts.stg/latest/build.zip
-            aws s3 cp build.zip s3://posts.stg/versions/build-${CIRCLE_TAG}.zip
-            aws lambda update-function-code --function-name posts_job --zip-file fileb://build.zip
-  deploy_prd:
-    machine:
-      enabled: true
-    working_directory: ~/posts
-    steps:
-      - attach_workspace:
-          at: ~/posts
-
-      - run:
-          name: Deploy to Production Environment
-          command: |
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PRD
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PRD
-            aws s3 cp build.zip s3://posts.prd/latest/build.zip
-            aws s3 cp build.zip s3://posts.prd/versions/build-${CIRCLE_TAG}.zip
-            aws lambda update-function-code --function-name posts_job --zip-file fileb://build.zip
-
+            aws s3 cp build.zip s3://posts-versions/build.zip
+            aws s3 cp build.zip s3://posts-versions/build-${CIRCLE_TAG}.zip
 workflows:
   version: 2
   build_and_deploy:
@@ -104,20 +86,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v([0-9]+).([0-9]+).([0-9]+).*$/
-      - hold:
-          type: approval
-          requires:
-            - deploy_stg
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v([0-9]+).([0-9]+).([0-9]+)$/
-      - deploy_prd:
-          requires:
-            - hold
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v([0-9]+).([0-9]+).([0-9]+)$/
