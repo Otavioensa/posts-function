@@ -1,7 +1,7 @@
 const { tz: timezone } = require('moment-timezone')
 const { expect } = require('chai');
 
-const syncPosts = require('../../src/syncPosts');
+const { syncPosts } = require('../../src/syncPosts');
 const { getPostsPerDate } = require('../../src/database/posts')
 
 describe('Lambda function', () => {

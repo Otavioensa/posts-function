@@ -8,4 +8,4 @@ const syncPosts = async ()  => {
   console.log('process finished');
 }
 
-module.exports = syncPosts;
+module.exports.syncPosts = syncPosts;
