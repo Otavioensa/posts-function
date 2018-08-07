@@ -3,7 +3,7 @@ const {
   AWS_SECRET_ACCESS_KEY,
   AWS_REGION,
   DYNAMO_ENDPOINT,
-  NODE_ENV = 'development',
+  NODE_ENV = 'production',
 } = process.env;
 
 const config = {
