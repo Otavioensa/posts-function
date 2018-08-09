@@ -1,0 +1,35 @@
+{
+  "name": "lambda-process-sample",
+  "version": "1.0.0",
+  "description": "Sample for validating an AWS Lambda implementation",
+  "main": "index.js",
+  "scripts": {
+    "start-dynamo-admin": "DYNAMO_ENDPOINT=http://dynamodb:8000 dynamodb-admin",
+    "test": "NODE_ENV=test mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Otavioensa/lambda-process-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Otavioensa/lambda-process-sample/issues"
+  },
+  "homepage": "https://github.com/Otavioensa/lambda-process-sample#readme",
+  "dependencies": {
+    "aws-sdk": "^2.273.1",
+    "axios": "^0.18.0",
+    "moment-timezone": "^0.5.21"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "dynamodb-admin": "^2.0.5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "mocha": "^5.2.0",
+    "rewire": "^4.0.1",
+    "sinon": "^6.1.3"
+  }
+}
