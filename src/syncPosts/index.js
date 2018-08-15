@@ -5,7 +5,12 @@ const syncPosts = async ()  => {
   const { data: posts } = await requestPosts();
   await insertPosts(posts);
 
-  console.log('process finished');
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'Job executed successfully',
+    }),
+  }
 }
 
 module.exports.syncPosts = syncPosts;
